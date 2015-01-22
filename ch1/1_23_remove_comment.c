@@ -85,11 +85,17 @@ void RmComment(FILE *fp){
 			}
 			if(tmp=='\\'){  // '\n'  '\''
 				putchar(tmp);
-				int i=2;
-				while(i--){
-					tmp=getc(fp);
-					if(tmp==EOF){
-						return;
+				tmp = getc(fp);
+				if(tmp=='\''){
+					putchar(tmp);
+					putchar(getc(fp));
+				}
+				else{
+					while((tmp=getc(fp))!='\''){
+						if(tmp==EOF){
+							return;
+						}
+						putchar(tmp);
 					}
 					putchar(tmp);
 				}
