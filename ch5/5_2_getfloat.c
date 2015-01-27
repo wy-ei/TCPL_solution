@@ -81,9 +81,7 @@ int getfloat(float *f){
 
 		c=getch();
 		index = (c=='-')?0.1:10;
-		if(c=='+'||c=='-'){
-			c=getch();
-		}else{
+		if(c!='+'&&c!='-'){
 			ungetch(c);
 		}
 		
