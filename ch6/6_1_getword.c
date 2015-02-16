@@ -188,10 +188,10 @@ void _qsort(struct key tab[],int left,int right){
 			if(i<j){
 				tab[j--].word=tab[i].word;
 			}
-			tab[i].word=tmp;
-			_qsort(tab,left,i-1);
-			_qsort(tab,i+1,right);
 		}
+		tab[i].word=tmp;
+		_qsort(tab,left,i-1);
+		_qsort(tab,i+1,right);
 	}
 }
 
