@@ -66,6 +66,7 @@ int main(){
 				break;
 			default:
 				printf("unknown command %s\n",s);
+				while(getch()!='\n');
 				break;
 		}
 	}
