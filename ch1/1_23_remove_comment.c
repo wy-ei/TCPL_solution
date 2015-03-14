@@ -78,9 +78,9 @@ void RmComment(FILE *fp){
 			while(tmp2!='\"'&&tmp2!=EOF){
 				tmp1=tmp2;
 				tmp2=getc(fp);
-				if(tmp1=='\\'&&tmp2=='\\'){    //   str="abcd//"
+				if(tmp1=='\\'&&tmp2=='\\'){    //   str="abcd\\"
 					tmp1=tmp2=CLEAR;
-				}else if(tmp1=='\\'&&tmp2=='\"'){  //  str="abcd/"efg"
+				}else if(tmp1=='\\'&&tmp2=='\"'){  //  str="abcd\"efg"
 					tmp1=tmp2=CLEAR;
 				}
 			}
