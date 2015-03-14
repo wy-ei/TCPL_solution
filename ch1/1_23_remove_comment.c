@@ -34,106 +34,78 @@ int main(int args,char **argv){
 void RmComment(FILE *fp){
 	int c;
 	int state=INCODE;
-	int commentType;
-	char lastChar=' ';
 	while((c=getc(fp))!=EOF){
 		if(state==INCODE){
-			if(c=='/'){
-				int tmp;
-				tmp=getc(fp);
-				if(tmp=='/'){        //  //
-					state=INCOMMENT;
-					commentType=SLASH;
-				}
-				else if(tmp=='*'){    // /*  */
-					state=INCOMMENT;
-					commentType=START;
-				}
-				else{
-					putchar(c);
-					c=tmp;
-				}
-			}
-			else if(c=='"'){
-				state=INDOUBLEQOUTE;
-			}
-			else if(c=='\''){
+			if(c=='/'){ 
+				state=INCOMMENT;
+			}else if(c=='\''){
 				state=INSINGLEQOUTE;
 			}
-			else{
+			else if(c=='\"'){
+				state=INDOUBLEQOUTE;
+			}else{
 				putchar(c);
 			}
-
-		}
-		if(state==INDOUBLEQOUTE){
-			putchar(c);
-			int tmp;
-			while((tmp=getc(fp))!='"'){
+		}else if(state==INCOMMENT){
+			if(c=='/'){
+				int tmp;
+				while((tmp=getc(fp))!='\n'&&tmp!=EOF)
+				  ;
 				if(tmp==EOF){
 					return;
+				}else{
+					putchar('\n');
 				}
-				putchar(tmp);
+			}else if(c=='*'){
+				int tmp1,tmp2;
+				tmp2=getc(fp);
+				while((tmp1!='*'||tmp2!='/')&&tmp2!=EOF){
+					tmp1=tmp2;
+					tmp2=getc(fp);
+				}
+				if(tmp2==EOF){
+					return;
+				}
+			}else{
+				putchar('/');
+				putchar(c);
 			}
-			putchar(tmp);
 			state=INCODE;
-		}
-		if(state==INSINGLEQOUTE){
-			putchar(c);
-			int tmp=getc(fp);
-			if(tmp==EOF){
+		}else if(state==INDOUBLEQOUTE){
+			int tmp1,tmp2;
+			tmp2=c;
+			int CLEAR = 0;
+			while(tmp2!='\"'&&tmp2!=EOF){
+				tmp1=tmp2;
+				tmp2=getc(fp);
+				if(tmp1=='\\'&&tmp2=='\\'){    //   str="abcd//"
+					tmp1=tmp2=CLEAR;
+				}else if(tmp1=='\\'&&tmp2=='\"'){  //  str="abcd/"efg"
+					tmp1=tmp2=CLEAR;
+				}
+			}
+			if(tmp2==EOF){
 				return;
 			}
-			if(tmp=='\\'){  // '\n'  '\''
-				putchar(tmp);
-				tmp = getc(fp);
-				if(tmp=='\''){
-					putchar(tmp);
-					putchar(getc(fp));
-				}
-				else{
-					while((tmp=getc(fp))!='\''){
-						if(tmp==EOF){
-							return;
-						}
-						putchar(tmp);
-					}
-					putchar(tmp);
+			state=INCODE;
+		}else if(state==INSINGLEQOUTE){
+			int tmp1,tmp2;
+			tmp2=c;
+			int CLEAR = 0;
+			while(tmp2!='\''&&tmp2!=EOF){
+				tmp1=tmp2;
+				tmp2=getc(fp);
+				if(tmp1=='\\'&&tmp2=='\\'){    //   str="abcd//"
+					tmp1=tmp2=CLEAR;
+				}else if(tmp1=='\\'&&tmp2=='\''){  //  str="abcd/"efg"
+					tmp1=tmp2=CLEAR;
 				}
 			}
-			else{    //  'a'
-				putchar(tmp);
-				tmp=getc(fp);
-				if(tmp==EOF){
-					return;
-				}
-				putchar(tmp);
+			if(tmp2==EOF){
+				return;
 			}
 			state=INCODE;
 		}
-		if(state==INCOMMENT){
-			if(commentType==START){
-				int tmp;
-				char c1,c2;
-				while((tmp=getc(fp))!=EOF){
-					c1=c2;
-					c2=tmp;
-					if(c1=='*'&&c2=='/'){
-						break;
-					}
-				}
-				state=INCODE;
-			}
-			if(commentType==SLASH){
-				int tmp;
-				while((tmp=getc(fp))!=EOF){
-					if(tmp=='\n'){
-						putchar(tmp);  // print a '\n'
-						break;
-					}
-				}
-				state=INCODE;
-			}
-		}		
 	}
 	return;
 }
