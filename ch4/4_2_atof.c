@@ -11,60 +11,61 @@
 
 double _atof(char *str);
 
-int main(){
-	char *spi="-3.1415926";
-	char *sv = "3.0E8";
+int main() {
+    char *spi = "-3.1415926";
+    char *sv = "3.0E8";
 
-	double pi = _atof(spi);
-	double v = _atof(sv);
-	printf("%s : %f\n",spi,pi);
-	printf("%s : %f\n",sv,v);
+    double pi = _atof(spi);
+    double v = _atof(sv);
+    printf("%s : %f\n", spi, pi);
+    printf("%s : %f\n", sv, v);
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 
-double _atof(char *s){
-	int sign,i;
-	double result,power;
-	int exp;
-	double expval;
-	for(i=0;isspace(s[i]);i++)   //skip space
-	  ;
-	
-	sign=(s[i]=='-')?-1:1;     // get sign
-	if(s[i]=='-'||s[i]=='+'){  
-		i++;
-	}
+double _atof(char *s) {
+    int sign, i;
+    double result, power;
+    int exp;
+    double expval;
+    for(i = 0; isspace(s[i]); i++) //skip space
+        ;
 
-	for(result=0;isdigit(s[i]);i++){    
-		result=result*10.0+s[i]-'0';
-	}
+    sign = (s[i] == '-') ? -1 : 1; // get sign
+    if(s[i] == '-' || s[i] == '+') {
+        i++;
+    }
 
-	if(s[i]=='.'){
-		i++;
-		for(power=1;isdigit(s[i]);i++){
-			result=result*10.0+s[i]-'0';
-			power*=10;
-		}
-	}if(s[i]=='E'||s[i]=='e'){
-		i++;
-		expval=(s[i]=='-')?0.1:10;
-		if(s[i]=='+'||s[i]=='-'){
-		  i++;
-		}
-		for(exp=0;isdigit(s[i]);i++){
-			exp=exp*10+s[i]-'0';
-		}
-	}
-	
-	result=sign*result/power;
+    for(result = 0; isdigit(s[i]); i++) {
+        result = result * 10.0 + s[i] - '0';
+    }
 
-	for(i=0;i<exp;i++){
-		result*=expval;
-	}
+    if(s[i] == '.') {
+        i++;
+        for(power = 1; isdigit(s[i]); i++) {
+            result = result * 10.0 + s[i] - '0';
+            power *= 10;
+        }
+    }
+    if(s[i] == 'E' || s[i] == 'e') {
+        i++;
+        expval = (s[i] == '-') ? 0.1 : 10;
+        if(s[i] == '+' || s[i] == '-') {
+            i++;
+        }
+        for(exp = 0; isdigit(s[i]); i++) {
+            exp = exp * 10 + s[i] - '0';
+        }
+    }
 
-	return result;
+    result = sign * result / power;
+
+    for(i = 0; i < exp; i++) {
+        result *= expval;
+    }
+
+    return result;
 }
 
-	
+
 

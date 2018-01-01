@@ -10,15 +10,15 @@
 
 #define swap(t,x,y)   t tmp;\
 				      tmp=x;x=y;y=tmp;
-int main(){
+int main() {
 
-	double a=111.1;
-	double b=999.9;
-	printf("a:%f  b:%f\n",a,b);
-	
-	swap(int,a,b);
+    double a = 111.1;
+    double b = 999.9;
+    printf("a:%f  b:%f\n", a, b);
 
-	printf("after swap:\na:%f  b:%f\n",a,b);
+    swap(int, a, b);
 
-	return 0;
+    printf("after swap:\na:%f  b:%f\n", a, b);
+
+    return 0;
 }

@@ -11,36 +11,35 @@
 #include <stdio.h>
 #define N 4
 
-int main(){
-	int c;
-	int nb=0; //number of blank
-	int nt=0; //number of tab
-	while((c=getchar())!=EOF){
-		if(c==' '){
-			nb++;
-			continue;
-		}
-		if(c=='\t'){
-			nb+=N;
-			continue;
-		}
-		if(nb==0){
-			putchar(c);
-		}
-		else{
-			nt=nb/N;
-			nb=nb%N;
-			while(nt!=0){
-				putchar('\t');
-				nt--;
-			}
-			while(nb!=0){
-				putchar(' ');
-				nb--;
-			}
-			putchar(c);
-		}
-	}
-	return 0;
+int main() {
+    int c;
+    int nb = 0; //number of blank
+    int nt = 0; //number of tab
+    while((c = getchar()) != EOF) {
+        if(c == ' ') {
+            nb++;
+            continue;
+        }
+        if(c == '\t') {
+            nb += N;
+            continue;
+        }
+        if(nb == 0) {
+            putchar(c);
+        } else {
+            nt = nb / N;
+            nb = nb % N;
+            while(nt != 0) {
+                putchar('\t');
+                nt--;
+            }
+            while(nb != 0) {
+                putchar(' ');
+                nb--;
+            }
+            putchar(c);
+        }
+    }
+    return 0;
 }
-			
+

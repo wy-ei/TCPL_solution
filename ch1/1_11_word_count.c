@@ -7,25 +7,25 @@
 
 #include <stdio.h>
 
-const int in=0,out=1;
+const int in = 0, out = 1;
 
-int main(){
-	int c;
-	int nl,nw,nc;  //number of lines ,words and charaters
-	nl=nw=nc=0;
-	int state=out;
-	while((c=getchar())!=EOF){
-		nc++;
-		if(c=='\n'){
-			nl++;
-		}
-		if(c=='\n'||c=='\t'||c==' '){
-			state=out;
-		}else if(state==out){
-			state=in;
-			nw++;
-		}
-	}
-	printf("%d %d %d\n",nl,nw,nc);
-	return 0;
+int main() {
+    int c;
+    int nl, nw, nc; //number of lines ,words and charaters
+    nl = nw = nc = 0;
+    int state = out;
+    while((c = getchar()) != EOF) {
+        nc++;
+        if(c == '\n') {
+            nl++;
+        }
+        if(c == '\n' || c == '\t' || c == ' ') {
+            state = out;
+        } else if(state == out) {
+            state = in;
+            nw++;
+        }
+    }
+    printf("%d %d %d\n", nl, nw, nc);
+    return 0;
 }

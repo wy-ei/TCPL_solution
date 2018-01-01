@@ -11,33 +11,33 @@
 
 void reverse(char *s);
 
-int main(){
-	char *s=NULL;
-	int len;
-	getline(&s,&len,stdin);
+int main() {
+    char *s = NULL;
+    int len;
+    getline(&s, &len, stdin);
 
-	reverse(s);
+    reverse(s);
 
-	printf("%s\n",s);
+    printf("%s\n", s);
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 
-void reverse(char *s){
-	void reverser(char *s,int i,int len);
-	reverser(s,0,strlen(s));
+void reverse(char *s) {
+    void reverser(char *s, int i, int len);
+    reverser(s, 0, strlen(s));
 }
 
-void reverser(char *s,int i,int len){
-	int c;
-	int j;
+void reverser(char *s, int i, int len) {
+    int c;
+    int j;
 
-	j=len-i-1;
+    j = len - i - 1;
 
-	if(i<j){
-		c=s[i];
-		s[i]=s[j];
-		s[j]=c;
-		reverser(s,++i,len);
-	}
+    if(i < j) {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
+        reverser(s, ++i, len);
+    }
 }

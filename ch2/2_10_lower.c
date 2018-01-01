@@ -7,15 +7,15 @@
 
 #include <stdio.h>
 
-char lower(char c){
-	return (c>='A'&&c<='Z')?(c-'A'+'a'):c;
+char lower(char c) {
+    return (c >= 'A' && c <= 'Z') ? (c - 'A' + 'a') : c;
 }
 
-int main(){
-	int n='A';
-	while(n<='Z'){
-		printf("lower(%c)=%c\n",n,lower(n));
-		n++;
-	}
-	return 0;
+int main() {
+    int n = 'A';
+    while(n <= 'Z') {
+        printf("lower(%c)=%c\n", n, lower(n));
+        n++;
+    }
+    return 0;
 }

@@ -9,27 +9,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void strcat_(char *,char *);
+void strcat_(char *, char *);
 
-int main(){
-	char a[20]="hello ";
-	char b[]="world!";
+int main() {
+    char a[20] = "hello ";
+    char b[] = "world!";
 
-	strcat_(a,b);
+    strcat_(a, b);
 
-	printf("%s\n",a);
+    printf("%s\n", a);
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 
-void strcat_(char *s,char *t){
-	while(*s!='\0'){
-		s++;
-	}
-	while(*t!='\0'){
-		*s++=*t++;
-	}
-	*s='\0';
+void strcat_(char *s, char *t) {
+    while(*s != '\0') {
+        s++;
+    }
+    while(*t != '\0') {
+        *s++ = *t++;
+    }
+    *s = '\0';
 }
 
 

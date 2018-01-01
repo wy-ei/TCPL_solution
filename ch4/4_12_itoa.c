@@ -8,24 +8,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void itoa(int,char *);
+void itoa(int, char *);
 
-int main(){
-	int n=211314;
-	char v[20];
-	itoa(n,v);
-	printf("%s\n",v);
-	return EXIT_SUCCESS;
+int main() {
+    int n = 211314;
+    char v[20];
+    itoa(n, v);
+    printf("%s\n", v);
+    return EXIT_SUCCESS;
 }
 
-void itoa(int n,char *s){
-	static int i=0;
-	if(n/10){
-		itoa(n/10,s);
-	}
-	s[i++] = n%10 + '0';
-	s[i]='\0';
+void itoa(int n, char *s) {
+    static int i = 0;
+    if(n / 10) {
+        itoa(n / 10, s);
+    }
+    s[i++] = n % 10 + '0';
+    s[i] = '\0';
 }
 
-	
+
 

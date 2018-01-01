@@ -7,21 +7,21 @@
 
 #include <stdio.h>
 
-void invert(unsigned *,int,int);
+void invert(unsigned *, int, int);
 
-int main(){
-	unsigned x=0x5505;
-	int p = 7;
-	int n = 4;
+int main() {
+    unsigned x = 0x5505;
+    int p = 7;
+    int n = 4;
 
-	invert(&x,p,n);
+    invert(&x, p, n);
 
-	printf("%x\n",x);   // 55f5
+    printf("%x\n", x);  // 55f5
 
-	return 0;
+    return 0;
 }
 
-void invert(unsigned *x,int p,int n){
-	*x = *x^(~(~0<<n)<<(p-n+1));   // 0^x=x  1^x=~x;
+void invert(unsigned *x, int p, int n) {
+    *x = *x ^ (~(~0 << n) << (p - n + 1)); // 0^x=x  1^x=~x;
 }
 

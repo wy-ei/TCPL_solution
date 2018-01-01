@@ -17,68 +17,68 @@
 #define MAXLEN 1000
 
 
-int lines=10;
+int lines = 10;
 char *lineptr[MAXLEN];
 
-void getopt(int argc,char *argv[]);
-int _getline(char *line,size_t maxlength);
+void getopt(int argc, char *argv[]);
+int _getline(char *line, size_t maxlength);
 int tail(char **lineptr);
 
-int main(int argc,char *argv[]){
-	getopt(argc,argv);
-	tail(lineptr);
-	return EXIT_SUCCESS;
+int main(int argc, char *argv[]) {
+    getopt(argc, argv);
+    tail(lineptr);
+    return EXIT_SUCCESS;
 }
 
 
-void getopt(int argc,char *argv[]){
-	if(argc==1){
-		return;
-	}else{
-		lines=atoi(argv[1]);
-	}
+void getopt(int argc, char *argv[]) {
+    if(argc == 1) {
+        return;
+    } else {
+        lines = atoi(argv[1]);
+    }
 }
-int _getline(char *line,size_t maxlength){
-	int i,c;
-	for(i=0;i<maxlength-1&&(c=getchar())!=EOF&&c!='\n';i++){
-		line[i]=c;
-	}
-	if(c=='\n'){
-		line[i++]=c;
-	}
-	line[i]='\0';
-	return i;
+int _getline(char *line, size_t maxlength) {
+    int i, c;
+    for(i = 0; i < maxlength - 1 && (c = getchar()) != EOF && c != '\n'; i++) {
+        line[i] = c;
+    }
+    if(c == '\n') {
+        line[i++] = c;
+    }
+    line[i] = '\0';
+    return i;
 }
-int tail(char *lineptr[]){
-	
-	int len,nlines;
-	char *p,line[MAXLEN];
-    nlines=0;
+int tail(char *lineptr[]) {
 
-	/*store lines*/
-	while((len = _getline(line,MAXLEN))>0&&(p=malloc(len))!=NULL){
-		line[len-1]='\0';
-		strcpy(p,line);
-		lineptr[nlines%lines]=p;   // use a queue
-		nlines++;
-	}
+    int len, nlines;
+    char *p, line[MAXLEN];
+    nlines = 0;
+
+    /*store lines*/
+    while((len = _getline(line, MAXLEN)) > 0 && (p = malloc(len)) != NULL) {
+        line[len - 1] = '\0';
+        strcpy(p, line);
+        lineptr[nlines % lines] = p; // use a queue
+        nlines++;
+    }
 
 
-	/*print lines*/
-	int i;				
-	if(nlines>lines){  // if input lines is great than set lines
-		int begin=nlines%lines;  //get start position
-		for(i=begin;i<lines;i++){
-			printf("%s\n",lineptr[i]);
-		}
-		for(i=0;i<begin;i++){
-			printf("%s\n",lineptr[i]);
-		}
-	}else{			// if less
-		for(i=0;i<nlines;i++){
-			printf("%s\n",lineptr[i]);
-		}
-	}
+    /*print lines*/
+    int i;
+    if(nlines > lines) { // if input lines is great than set lines
+        int begin = nlines % lines; //get start position
+        for(i = begin; i < lines; i++) {
+            printf("%s\n", lineptr[i]);
+        }
+        for(i = 0; i < begin; i++) {
+            printf("%s\n", lineptr[i]);
+        }
+    } else {			// if less
+        for(i = 0; i < nlines; i++) {
+            printf("%s\n", lineptr[i]);
+        }
+    }
 }
-	
+
 

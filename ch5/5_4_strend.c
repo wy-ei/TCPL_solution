@@ -9,29 +9,29 @@
 #include <stdlib.h>
 #include <string.h>
 
-int strend(char *s,char *t);
+int strend(char *s, char *t);
 
-int main(){
-	char *a="hello,world!";
-	char *b="world!";
-	char *c="hello";
+int main() {
+    char *a = "hello,world!";
+    char *b = "world!";
+    char *c = "hello";
 
-	printf("%d\n",strend(a,b));
+    printf("%d\n", strend(a, b));
 
-	printf("%d\n",strend(a,c));
+    printf("%d\n", strend(a, c));
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 
-int strend(char *s,char *t){
-	char *tmp = s + (strlen(s) - strlen(t));
-	while(*t){
-		if(*tmp!=*t){
-			return 0;
-		}
-		tmp++;
-		t++;
-	}
-	return 1;
+int strend(char *s, char *t) {
+    char *tmp = s + (strlen(s) - strlen(t));
+    while(*t) {
+        if(*tmp != *t) {
+            return 0;
+        }
+        tmp++;
+        t++;
+    }
+    return 1;
 }
 

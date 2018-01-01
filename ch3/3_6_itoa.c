@@ -10,43 +10,43 @@
 #include <stdlib.h>
 #include <limits.h>
 
-void itoa(int n,char *s,int m);
+void itoa(int n, char *s, int m);
 void reverse(char *s);
-int main(){
-	int n=INT_MIN;
-	int m=30;
-	char s[50];
-	itoa(n,s,m);
-	printf("result:%s\n",s);
-	
-	return EXIT_SUCCESS;
+int main() {
+    int n = INT_MIN;
+    int m = 30;
+    char s[50];
+    itoa(n, s, m);
+    printf("result:%s\n", s);
+
+    return EXIT_SUCCESS;
 }
-void reverse(char *s){
-	char c;
-	int i,j=0;
-	while(s[j]!='\0'){
-		j++;
-	}
-	for(i=0,j-=1;i<j;i++,j--){
-		c=s[i];
-		s[i]=s[j];
-		s[j]=c;
-	}
+void reverse(char *s) {
+    char c;
+    int i, j = 0;
+    while(s[j] != '\0') {
+        j++;
+    }
+    for(i = 0, j -= 1; i < j; i++, j--) {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
+    }
 }
 
 
-void itoa(int n,char *s,int m){
-	int sign,i;
-	i=0;
-	do{
-		s[i++]=abs(n%10)+'0';
-	}while((n/=10)!=0);
-	if(sign<0){
-		s[i++]='-';
-	}
-	for(;i<m;i++){
-		s[i]=' ';
-	}
-	s[i]='\0';
-	reverse(s);
+void itoa(int n, char *s, int m) {
+    int sign, i;
+    i = 0;
+    do {
+        s[i++] = abs(n % 10) + '0';
+    } while((n /= 10) != 0);
+    if(sign < 0) {
+        s[i++] = '-';
+    }
+    for(; i < m; i++) {
+        s[i] = ' ';
+    }
+    s[i] = '\0';
+    reverse(s);
 }

@@ -10,26 +10,26 @@
 #include <stdlib.h>
 void reverse(char str[]);
 
-int main(){
-	char *str=NULL;
-	int len;
-	while(getline(&str,&len,stdin)!=-1){
-		reverse(str);
-		printf("%s",str);
-	}
-	free(str);
-	return 0;
+int main() {
+    char *str = NULL;
+    int len;
+    while(getline(&str, &len, stdin) != -1) {
+        reverse(str);
+        printf("%s", str);
+    }
+    free(str);
+    return 0;
 }
 
-void reverse(char str[]){
-	char tmp;
-	int len=strlen(str);
-	int low=0,high=len-2;   //str[len-1] is '\0' , str[len-2] is '\n'
-	while(low<high){
-		tmp=str[low];
-		str[low]=str[high];
-		str[high]=tmp;
-		--high;
-		++low;
-	}
+void reverse(char str[]) {
+    char tmp;
+    int len = strlen(str);
+    int low = 0, high = len - 2; //str[len-1] is '\0' , str[len-2] is '\n'
+    while(low < high) {
+        tmp = str[low];
+        str[low] = str[high];
+        str[high] = tmp;
+        --high;
+        ++low;
+    }
 }

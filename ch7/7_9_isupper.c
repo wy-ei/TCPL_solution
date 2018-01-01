@@ -12,15 +12,15 @@
 #define isupper1(c) ((c)>='A'&&(c)<='D') //save time
 
 
-int isupper2(int c){  //save space
-	return c>='A'&&c<='D';
+int isupper2(int c) { //save space
+    return c >= 'A' && c <= 'D';
 }
 
 
-int main(){
-	char c='A';
-	printf("%d\n",isupper1(c));
-	printf("%d\n",isupper2(c));
+int main() {
+    char c = 'A';
+    printf("%d\n", isupper1(c));
+    printf("%d\n", isupper2(c));
 
-	return 0;
+    return 0;
 }

@@ -7,19 +7,19 @@
 
 #include <stdio.h>
 
-unsigned rightrot(int x, int n){	
-	int size=sizeof(x)*8;
-	unsigned y=(unsigned)x;
-	return y>>n | y << (size-n);
+unsigned rightrot(int x, int n) {
+    int size = sizeof(x) * 8;
+    unsigned y = (unsigned)x;
+    return y >> n | y << (size - n);
 }
 
-int main(){
-	int x, n;
-	x = 0x70f0f0f1; /* 0111 0000 1111 0000 1111 0000 1111 0001 */
-	n = 4;
-	printf("%08x >>(rotated) %d = %08x\n",x,n,rightrot(x,n));
-	x = 0x170f0f0f; /* 0001 0111 0000 1111 0000 1111 0000 1111 */
-	n = 8;
-	printf("%08x >>(rotated) %d = %08x\n",x,n,rightrot(x,n));
-	return 0;
+int main() {
+    int x, n;
+    x = 0x70f0f0f1; /* 0111 0000 1111 0000 1111 0000 1111 0001 */
+    n = 4;
+    printf("%08x >>(rotated) %d = %08x\n", x, n, rightrot(x, n));
+    x = 0x170f0f0f; /* 0001 0111 0000 1111 0000 1111 0000 1111 */
+    n = 8;
+    printf("%08x >>(rotated) %d = %08x\n", x, n, rightrot(x, n));
+    return 0;
 }
